@@ -4,9 +4,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   #Routes for User resource:
-  #GET
   get("/users", {:controller => "users", :action => "index"})
-  get("users/:username", {:controller => "users", :action => "show"})
+  get("/users/:username", {:controller => "users", :action => "show"})
 
 
   # Routes for the Follow request resource:
