@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
   root to: "users#index"
+  
+  devise_for :users
+
+  #Routes for User resource:
+  #GET
+  get("/users", {:controller => "users", :action => "index"})
+  get("users/:username", {:controller => "users", :action => "show"})
+
+
   # Routes for the Follow request resource:
 
   # CREATE
@@ -38,7 +47,6 @@ Rails.application.routes.draw do
 
   #------------------------------
 
-  devise_for :users
   # Routes for the Comment resource:
 
   # CREATE
