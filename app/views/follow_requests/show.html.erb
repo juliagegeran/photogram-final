@@ -1,0 +1,101 @@
+<div>
+  <div>
+    <h1>
+      Follow request #<%= @the_follow_request.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/follow_requests">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_follow_request/<%= @the_follow_request.id %>">
+          Delete follow request
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Recipient
+      </dt>
+      <dd>
+        <%= @the_follow_request.recipient_id %>
+      </dd>
+
+      <dt>
+        Sender
+      </dt>
+      <dd>
+        <%= @the_follow_request.sender_id %>
+      </dd>
+
+      <dt>
+        Status
+      </dt>
+      <dd>
+        <%= @the_follow_request.status %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_follow_request.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_follow_request.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit follow request
+    </h2>
+
+    <form action="/modify_follow_request/<%= @the_follow_request.id %>"  method="post" >
+      <div>
+        <label for="recipient_id_box">
+          Recipient
+        </label>
+
+        <input type="text" id="recipient_id_box" name="query_recipient_id" value="<%= @the_follow_request.recipient_id %>">
+      </div>
+
+      <div>
+        <label for="sender_id_box">
+          Sender
+        </label>
+
+        <input type="text" id="sender_id_box" name="query_sender_id" value="<%= @the_follow_request.sender_id %>">
+      </div>
+
+      <div>
+        <label for="status_box">
+          Status
+        </label>
+
+        <input type="text" id="status_box" name="query_status" value="<%= @the_follow_request.status %>">
+      </div>
+
+      <button>
+        Update follow request
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

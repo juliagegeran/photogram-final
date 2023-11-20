@@ -1,0 +1,101 @@
+<div>
+  <div>
+    <h1>
+      Comment #<%= @the_comment.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/comments">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_comment/<%= @the_comment.id %>">
+          Delete comment
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Body
+      </dt>
+      <dd>
+        <%= @the_comment.body %>
+      </dd>
+
+      <dt>
+        Author
+      </dt>
+      <dd>
+        <%= @the_comment.author_id %>
+      </dd>
+
+      <dt>
+        Photo
+      </dt>
+      <dd>
+        <%= @the_comment.photo_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_comment.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_comment.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit comment
+    </h2>
+
+    <form action="/modify_comment/<%= @the_comment.id %>"  method="post" >
+      <div>
+        <label for="body_box">
+          Body
+        </label>
+
+        <input type="text" id="body_box" name="query_body" value="<%= @the_comment.body %>">
+      </div>
+
+      <div>
+        <label for="author_id_box">
+          Author
+        </label>
+
+        <input type="text" id="author_id_box" name="query_author_id" value="<%= @the_comment.author_id %>">
+      </div>
+
+      <div>
+        <label for="photo_id_box">
+          Photo
+        </label>
+
+        <input type="text" id="photo_id_box" name="query_photo_id" value="<%= @the_comment.photo_id %>">
+      </div>
+
+      <button>
+        Update comment
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
