@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   #Routes for User resource:
   get("/users", {:controller => "users", :action => "index"})
+  
   get("/users/:username", {:controller => "users", :action => "show"})
 
 

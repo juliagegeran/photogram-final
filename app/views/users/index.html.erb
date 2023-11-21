@@ -1,1 +1,28 @@
-<h1>howdy</h1>>
+<h1>List of users</h1>>
+
+<table border = "1">
+  <tr>
+    <th>Username</th>
+    <th>Private?</th>
+    <th></th>
+    <th></th>
+  
+  <%User.all.each do |each_user|%>    
+  <tr>
+    <td><%=each_user.username%></td>
+    <%if each_user.private?%>
+      <td>Yes</td>
+    <%else%>
+      <td>No</td>
+    <%end%>
+    
+    <% if current_user.present? %>
+      <% leaders_records = current_user.follow_sent %>
+      <td><%=leaders_records.id%></td>
+
+    <% else %>  
+      <td></td>
+    <% end %>
+  </tr>
+  <%end%>
+</table>
