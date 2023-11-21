@@ -1,6 +1,6 @@
 class PhotosController < ApplicationController
   def index
-    before_action :authenticate_user!
+    skip_before_action :authenticate_user!
 
     matching_photos = Photo.all
 
