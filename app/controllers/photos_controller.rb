@@ -1,5 +1,7 @@
 class PhotosController < ApplicationController
   def index
+    before_action :authenticate_user!
+
     matching_photos = Photo.all
 
     @list_of_photos = matching_photos.order({ :created_at => :desc })
