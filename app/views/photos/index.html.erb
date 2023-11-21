@@ -8,59 +8,14 @@
 
 <hr>
 
-<div>
+<% if current_user.present? %>
   <div>
-    <h2>
-      Add a new photo
-    </h2>
-
-    <form action="/insert_photo" method="post">
-      <div>
-        <label for="caption_box">
-          Caption
-        </label>
-
-        <input type="text" id="caption_box" name="query_caption">
-      </div>
-
-      <div>
-        <label for="comments_count_box">
-          Comments count
-        </label>
-
-        <input type="text" id="comments_count_box" name="query_comments_count">
-      </div>
-
-      <div>
-        <label for="image_box">
-          Image
-        </label>
-
-        <input type="text" id="image_box" name="query_image">
-      </div>
-
-      <div>
-        <label for="likes_count_box">
-          Likes count
-        </label>
-
-        <input type="text" id="likes_count_box" name="query_likes_count">
-      </div>
-
-      <div>
-        <label for="owner_id_box">
-          Owner
-        </label>
-
-        <input type="text" id="owner_id_box" name="query_owner_id">
-      </div>
-
-      <button>
-        Create photo
-      </button>
+    <form action="/insert_photo" method = "post" class="form-horizontal" enctype = "multipart/form-data">
+      <input type="file" name = "image_upload" id="image" value = "No file chosen" class= "form-control">
     </form>
   </div>
-</div>
+  
+<% end %>
 
 <hr>
 <div>
