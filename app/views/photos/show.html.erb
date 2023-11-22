@@ -17,9 +17,25 @@
     <dd><%=@the_photo.comments.count%></dd>
 
   <dt>Fans</dt>
-    <%fans_records = Like.where(:photo_id => @the_photo.id).to_a %>
+    <%fans_records = Like.where(:photo_id => @the_photo.id)%>
+    <%fans_count = fans_records.count%>
       <% if fans_records.present? %>
-        <dd><%=fans_records%></dd>  
+        <%fans_list = Array.new()%>
+        <%fans_records.each do |each_fan|%>
+        <%fans_list = fans_list.push(User.where(:id => each_fan.fan_id).first.username)%>
+        <% end %>
+        <dd><%=fans_list.to_sentence%></dd>  
       <% end %>
+  <dt>Add a fan</dt>
+    <%is_fan = Like.where(:photo_id => @the_photo.id, :fan_id => current_user.id).first%>
+    <% if is_fan.present? %>
+      <dd><a href="/delete_like/<%=is_fan.id%>">Unlike</a></dd>
+    <% else %>
+      <form action="/insert_like" method = "post">
+      <input type="hidden", name = "query_fan_id", value = "<%=current_user.id%>">
+      <input type="hidden", name = "query_photo_id", value = "<%=@the_photo.id%>">
+      <button>Like</button>
+      </form>
+    <% end %>
     
 </dl>
