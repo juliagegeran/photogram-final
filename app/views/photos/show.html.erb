@@ -1,5 +1,6 @@
 <h1>Photo Details</h1>
 
+<div>
 <dl>
   <dt>Image</dt>
     <dd><img src="<%=@the_photo.image%>" class = "image_responsive"></dd>
@@ -37,5 +38,36 @@
       <button>Like</button>
       </form>
     <% end %>
-    
 </dl>
+
+</div>
+
+<h1>Comments</h1>
+<table>
+  <tr>
+    <th>Commenter</th>
+    <th>Comment</th>
+    <th>Posted</th>
+  </tr>
+
+  <%comments = Comment.where(:photo_id => @the_photo.id)%>
+  <%comments.all.each do |each_comment|%>
+  <tr>
+    <td><%=User.where(:id => each_comment.author_id).first.username%></td>
+    <td><%=each_comment.body%></td>
+    <td><%=time_ago_in_words(each_comment.created_at)%></td>
+  
+  </tr>
+  <% end %>
+
+</table>
+
+<h2>Add a new comment</h2>
+
+<form action="" method = "post">
+  <label for="comment_field">Comment</label>
+  <textarea name="query_body" id="comment_field" rows="2" placeholder ="Enter a comment..."></textarea>
+  <input type="hidden" name = "query_author_id" value = "<%=current_user.id%>">
+  <input type="hidden" name = "query_photo_id" value ="<%=@the_photo.id%>">
+  <button>Add comment</button>
+</form>
