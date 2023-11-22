@@ -17,9 +17,9 @@
     <dd><%=@the_photo.comments.count%></dd>
 
   <dt>Fans</dt>
-    <%fans_records = User.where(:liked_photos => @the_photo.id).to_a %>
+    <%fans_records = Like.where(:photo_id => @the_photo.id).to_a %>
       <% if fans_records.present? %>
-        <dd><%=fan_records%></dd>  
+        <dd><%=fans_records%></dd>  
       <% end %>
     
 </dl>
