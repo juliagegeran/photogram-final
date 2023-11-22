@@ -3,10 +3,23 @@
 <dl>
   <dt>Image</dt>
     <dd><img src="<%=@the_photo.image%>" class = "image_responsive"></dd>
+  
   <dt>Caption</dt>
     <dd><%=@the_photo.caption%></dd>
+  
   <dt>Owner</dt>
     <dd><%=User.where(:id => @the_photo.owner_id).first.username%></dd>
-    
+  
+  <dt>Posted</dt>
+    <dd><%=@the_photo.created_at%></dd>
+  
+  <dt>Comments count</dt>
+    <dd><%=@the_photo.comments.count%></dd>
 
+  <dt>Fans</dt>
+    <%fans_records = User.where(:liked_photos => @the_photo.id).to_a %>
+      <% if fans_records.present? %>
+        <dd><%=fan_records%></dd>  
+      <% end %>
+    
 </dl>
