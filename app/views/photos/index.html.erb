@@ -11,90 +11,61 @@
 <% if current_user.present? %>
   <div>
     <form action="/insert_photo" method = "post" class="form-horizontal" enctype = "multipart/form-data">
-      <input type="file" name = "image_upload" id="image" value = "No file chosen" class= "form-control">
+      <label for="image">Image</label>
+      <input type="file" name = "query_image" id="image" value = "No file chosen" class= "form-control">
+      <label for="caption_input">Caption</label>
+      <textarea name="query_caption" id="caption_input"  rows="2"></textarea>
+      <input type="hidden" name = "query_comments_count" id = "comment_count_field" value = 0>
+
+      <input type="hidden" name = "query_likes_count" id = "likes_count_field" value = 0>
+
+      <input type="hidden" name = "query_owner_id" id = "owner_id_field" value = "<%=current_user.id%>">
+      
+      <button>Add photo</button>
     </form>
   </div>
   
 <% end %>
 
 <hr>
+
 <div>
   <div>
     <table border="1">
       <tr>
-        <th>
-          ID
-        </th>
-
-        <th>
-          Caption
-        </th>
-
-        <th>
-          Comments count
-        </th>
-
-        <th>
-          Image
-        </th>
-
-        <th>
-          Likes count
-        </th>
-
-        <th>
-          Owner
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
+        <th>Image</th>
+        <th>Caption</th>
+        <th>Owner</th>
+        <th>Posted</th>
+        <th>Likes</th>
+        <th></th>
       </tr>
 
       <% @list_of_photos.each do |a_photo| %>
       <tr>
-        <td>
-          <%= a_photo.id %>
-        </td>
+        <td><img src="<%=a_photo.image%>" class = "image_responsive"></td>
 
         <td>
           <%= a_photo.caption %>
         </td>
 
         <td>
-          <%= a_photo.comments_count %>
-        </td>
-
-        <td>
-          <%= a_photo.image %>
-        </td>
-
-        <td>
-          <%= a_photo.likes_count %>
-        </td>
-
-        <td>
-          <%= a_photo.owner_id %>
+          <%= User.where(:id => a_photo.owner_id).first.username %>
         </td>
 
         <td>
           <%= time_ago_in_words(a_photo.created_at) %> ago
         </td>
-        <td>
-          <%= time_ago_in_words(a_photo.updated_at) %> ago
-        </td>
 
+        <td>
+          <%= a_photo.likes_count%>
+        </td>
+ 
         <td>
           <a href="/photos/<%= a_photo.id %>">
             Show details
           </a>
+
         </td>
       </tr>
       <% end %>
