@@ -13,12 +13,14 @@
     <form action="/insert_photo" method = "post" class="form-horizontal" enctype = "multipart/form-data">
       <label for="image">Image</label>
       <input type="file" name = "query_image" id="image" value = "No file chosen" class= "form-control">
+      
+      
       <label for="caption_input">Caption</label>
       <textarea name="query_caption" id="caption_input"  rows="2"></textarea>
+      
+      
       <input type="hidden" name = "query_comments_count" id = "comment_count_field" value = 0>
-
       <input type="hidden" name = "query_likes_count" id = "likes_count_field" value = 0>
-
       <input type="hidden" name = "query_owner_id" id = "owner_id_field" value = "<%=current_user.id%>">
       
       <button>Add photo</button>
