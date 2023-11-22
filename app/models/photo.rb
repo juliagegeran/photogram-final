@@ -12,8 +12,9 @@
 #  owner_id       :integer
 #
 class Photo < ApplicationRecord
-  validates(:onwer, presence: true)
+  validates(:owner, presence: true)
   has_many  :comments, dependent: :destroy
   has_many  :likes, dependent: :destroy
   belongs_to :owner, class_name: "User"
+  mount_uploader :image, ImageUploader
 end
