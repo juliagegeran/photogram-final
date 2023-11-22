@@ -64,7 +64,7 @@
 
 <h2>Add a new comment</h2>
 
-<form action="" method = "post">
+<form action="/insert_comment" method = "post">
   <label for="comment_field">Comment</label>
   <textarea name="query_body" id="comment_field" rows="2" placeholder ="Enter a comment..."></textarea>
   <input type="hidden" name = "query_author_id" value = "<%=current_user.id%>">
