@@ -59,7 +59,7 @@ class PhotosController < ApplicationController
     the_photo = Photo.where({ :id => the_id }).at(0)
 
     the_photo.destroy
-
-    redirect_to("/photos", { :notice => "Photo deleted successfully."} )
+    
+    redirect_to("/photos", {:notice => "Photo deleted successfully."} )
   end
 end

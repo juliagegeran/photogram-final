@@ -1,3 +1,7 @@
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
 <h1>List of users</h1>>
 
 <table border = "1">
@@ -47,7 +51,7 @@
       <td></td>
     <% end %>
 
-    <% if leader.nil? %>
+    <% if leader.nil? && each_user.username != current_user.username%>
       <td><a href="/users">Show details</a></td>
     <% else %>
       <td><a href="/users/<%=each_user.username%>">Show details</a></td>
