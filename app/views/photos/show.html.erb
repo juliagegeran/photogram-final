@@ -44,7 +44,7 @@
       <dd>
         <form action="/modify_photo/<%=@the_photo.id%>" method = "post">
           <label for="image_url_field">Image</label>
-          <input type="text" name = "query_image" id = "image_url_field" value = "<%=@the_photo.image%>" placeholder = "Enter a URL for the image...">
+          <input type="text" name = "query_image" id = "image_url_field" placeholder = "Enter a URL for the image..." value = "<%=@the_photo.image.to_s%>">
 
           <label for="caption_field">Caption</label>
           <textarea name="query_caption" id="caption_field" rows="2" placeholder = "Enter a caption for the photo..."><%=@the_photo.caption%></textarea>
