@@ -1,0 +1,49 @@
+<div>
+  <h1><%=@this_user.username%></h1>
+</div>
+
+<div>
+  <dl>
+    <dt>Private</dt>
+      <dd><%=@this_user.private%></dd>
+    <dt>Followers</dt>
+      <dd><%=@this_user.follow_received.where(:status => "accepted").count%></dd>
+    <dt>Following</dt>
+      <dd><%=@this_user.follow_sent.where(:status => "accepted").count%></dd>
+  </dl>
+
+</div>
+
+<nav>
+  <ul>
+    <li><a href="/users/<%=@this_user.username%>">Profile</a></li>
+    <li><a href="/users/<%=@this_user.username%>/liked_photos">Liked photos</a></li>
+    <li><a href="/users/<%=@this_user.username%>/feed">Feed</a></li>
+    <li><a href="/users/<%=@this_user.username%>/discover">Discover</a></li>
+  </ul>
+</nav>
+
+<div>
+  <h1>Own photos (<%=@this_user.photos.count%>)</h1>
+  <table border = "1">
+    <tr>
+      <th>Image</th>
+      <th>Owner</th>
+      <th>Caption</th>
+      <th>Posted</th>
+      <th>Likes</th>
+      <th></th>
+    </tr>
+    <%@this_user.photos.all.each do |each_photo|%>
+    <tr>
+      <td><img src="<%=each_photo.image%>"></td>
+      <td><%=User.where(:id => each_photo.owner_id).first.username%></td>
+      <td><%=each_photo.caption%></td>
+      <td><%=time_ago_in_words(each_photo.created_at)%></td>
+      <td><%=each_photo.likes_count%></td>
+      <td><a href="/photos/<%=each_photo.id%>">Show details</a></td>
+    </tr>
+
+    <% end %>
+  </table>
+</div>

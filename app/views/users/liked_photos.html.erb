@@ -1,0 +1,54 @@
+<div>
+  <h1><%=@this_user.username%></h1>
+</div>
+
+<div>
+  <dl>
+    <dt>Private</dt>
+      <dd><%=@this_user.private%></dd>
+    <dt>Followers</dt>
+      <dd><%=@this_user.follow_received.where(:status => "accepted").count%></dd>
+    <dt>Following</dt>
+      <dd><%=@this_user.follow_sent.where(:status => "accepted").count%></dd>
+  </dl>
+
+</div>
+
+<nav>
+  <ul>
+    <li><a href="/users/<%=@this_user.username%>">Profile</a></li>
+    <li><a href="/users/<%=@this_user.username%>/liked_photos">Liked photos</a></li>
+    <li><a href="/users/<%=@this_user.username%>/feed">Feed</a></li>
+    <li><a href="/users/<%=@this_user.username%>/discover">Discover</a></li>
+  </ul>
+</nav>
+
+<div>
+  <%likes_sent = Like.where(:fan_id => @this_user.id)%>
+  <h1>Liked photos (<%=likes_sent.count%>)</h1>
+
+  <table border = "1">
+    <tr>
+      <th>Image</th>
+      <th>Owner</th>
+      <th>Caption</th>
+      <th>Posted</th>
+      <th>Likes</th>
+      <th></th>
+    </tr>
+    
+    <%likes_sent.each do |each_like|%>
+    <%liked_photo_record = Photo.where(:id => each_like.photo_id).first%>
+
+    <tr>
+      <td><img src="<%=liked_photo_record.image%>"></td>
+      <td><%=User.where(:id => liked_photo_record.owner_id).first.username%></td>
+      <td><%=liked_photo_record.caption%></td>
+      <td><%=time_ago_in_words(liked_photo_record.created_at)%></td>
+      <td><%=liked_photo_record.likes_count%></td>
+      <td><a href="/photos/<%=liked_photo_record.id%>">Show details</a></td>
+  
+    </tr>
+  <% end %>
+  </table>
+</div>

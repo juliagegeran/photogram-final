@@ -25,9 +25,9 @@ class FollowRequestsController < ApplicationController
 
     if the_follow_request.valid?
       the_follow_request.save
-      redirect_to("/follow_requests", { :notice => "Follow request created successfully." })
+      redirect_to("/users", { :notice => "Follow request created successfully." })
     else
-      redirect_to("/follow_requests", { :alert => the_follow_request.errors.full_messages.to_sentence })
+      redirect_to("/users", { :alert => the_follow_request.errors.full_messages.to_sentence })
     end
   end
 

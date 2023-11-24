@@ -47,7 +47,12 @@
       <td></td>
     <% end %>
 
-    <td><a href="/users/<%=each_user.username%>">Show details</a></td>
+    <% if leader.nil? %>
+      <td><a href="/users">Show details</a></td>
+    <% else %>
+      <td><a href="/users/<%=each_user.username%>">Show details</a></td>
+    <% end %>
+
   </tr>
   <%end%>
 
