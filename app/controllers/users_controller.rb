@@ -38,9 +38,7 @@ class UsersController < ApplicationController
     end 
 
     def current_user_can_view_details?(user)
-      return true if user == current_user
-  
-      # Check if the current user is a follower of the user
-      current_user.follow_sent.include?(user)
+    if user == current_user || current_user.follow_sent.include?(user)
+
     end
 end
