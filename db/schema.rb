@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_20_022156) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_25_205458) do
   create_table "comments", force: :cascade do |t|
-    t.string "body"
+    t.text "body"
     t.integer "author_id"
     t.integer "photo_id"
     t.datetime "created_at", null: false
@@ -35,10 +35,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_20_022156) do
   end
 
   create_table "photos", force: :cascade do |t|
-    t.string "caption"
-    t.string "comments_count"
+    t.text "caption"
+    t.integer "comments_count"
     t.string "image"
-    t.string "likes_count"
+    t.integer "likes_count"
     t.integer "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -50,8 +50,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_20_022156) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "comments_count"
-    t.string "likes_count"
+    t.integer "comments_count"
+    t.integer "likes_count"
     t.boolean "private"
     t.string "username"
     t.datetime "created_at", null: false
