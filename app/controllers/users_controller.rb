@@ -41,7 +41,7 @@ class UsersController < ApplicationController
       @this_user = User.where(:username => params.fetch("username")).first
       return true if current_user.id == @this_user.id
       return true if @this_user.private == false
-      return true if @this_user.private == true && current_user.follow_sent.where(:status => "accepted").include?(@this_user)
+      return true if @this_user.private == true && current_user.follow_sent.where(:status => "accepted", :recipient_id => @this_user.id).present?
 
     end
 end
