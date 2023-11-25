@@ -41,6 +41,6 @@ class UsersController < ApplicationController
       return true if user == current_user
   
       # Check if the current user is a follower of the user
-      current_user.followers.include?(user)
+      current_user.follow_sent.include?(user)
     end
 end
