@@ -3,10 +3,10 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
-#  comments_count         :string
+#  comments_count         :integer
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
-#  likes_count            :string
+#  likes_count            :integer
 #  private                :boolean
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime

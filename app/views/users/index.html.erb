@@ -1,8 +1,8 @@
-<% if flash[:notice] %>
-  <div class="notice"><%= flash[:notice] %></div>
-<% end %>
+<div>
+  <%=flash.notice%>
+</div>
 
-<h1>List of users</h1>>
+<h1>List of users</h1>
 
 <table border = "1">
   <tr>
@@ -12,52 +12,57 @@
     <th></th>
   
   <%User.all.each do |each_user|%>    
-  <tr>
-    <td><%=each_user.username%></td>
-    <%if each_user.private?%>
-      <td>Yes</td>
-    <%else%>
-      <td>No</td>
-    <%end%>
-   
-    <% if current_user.present? %>
-      <% leader = current_user.follow_sent.where(:status => "accepted", :recipient_id => each_user.id).first %>
-      <% pending_leader = current_user.follow_sent.where(:status => "pending", :recipient_id => each_user.id).first %>
-
-      <% if leader.present?%>
-        <td><a href="/delete_follow_request/<%=leader.id%>">Unfollow</a></td>
+    <tr>
+      <td><%=each_user.username%></td>
       
-      <% elsif leader.nil? && pending_leader.present? %>
-        <td>Request sent. <a href="/delete_follow_request/<%=pending_leader.id%>">Cancel</a></td>   
+      <%if each_user.private?%>
+        <td>Yes</td>
+      <%else%>
+        <td>No</td>
+      <%end%>
+    
+      <% if current_user.present? %>
+        <% leader = current_user.follow_sent.where(:status => "accepted", :recipient_id => each_user.id).first %>
+        <% pending_leader = current_user.follow_sent.where(:status => "pending", :recipient_id => each_user.id).first %>
 
-      <% elsif leader.nil? && pending_leader.nil? %>
-        <td><form action="/insert_follow_request" method = "post">
-          <input type="hidden" name = "query_recipient_id" id = "query_recipient_field" value = <%=each_user.id%>>
-          <input type="hidden" name = "query_sender_id" id = "query_sender_field" value = <%=current_user.id%>>
+        <% if leader.present?%>
+          <td><a href="/delete_follow_request/<%=leader.id%>">Unfollow</a></td>
+        
+        <% elsif leader.nil? && pending_leader.present? %>
+          <td>Request sent. <a href="/delete_follow_request/<%=pending_leader.id%>">Cancel</a></td>   
 
-          <% if each_user.private? %>
-            <input type="hidden" name = "query_status" id = "query_status_field" value = "pending">
+        <% elsif leader.nil? && pending_leader.nil? %>
+          <td><form action="/insert_follow_request" method = "post">
+            <input type="hidden" name = "query_recipient_id" id = "query_recipient_field" value = <%=each_user.id%>>
+            <input type="hidden" name = "query_sender_id" id = "query_sender_field" value = <%=current_user.id%>>
 
-            <% else %>
-            <input type="hidden" name = "query_status" id = "query_status_field" value = "accepted">
+            <% if each_user.private? %>
+              <input type="hidden" name = "query_status" id = "query_status_field" value = "pending">
 
-          <% end %>
-            <button>Follow</button>
-          </form>
-        </td>
+              <% else %>
+              <input type="hidden" name = "query_status" id = "query_status_field" value = "accepted">
+
+            <% end %>
+              <button>Follow</button>
+            </form>
+          </td>
+        <% end %>
+      
+      <% else %>
+        <td></td>
       <% end %>
     
-    <% else %>
-      <td></td>
-    <% end %>
+      <% if leader.nil? && current_user.present? && current_user.username != each_user.username %>
+        <td>
+          <form action="/users">
+          <a href="/users">Show details</a>
+          </form>
+        </td>
+      <% else %>
+        <td><a href="/users/<%=each_user.username%>">Show details</a></td>
+      <% end %>
 
-    <% if leader.nil? && each_user.username != current_user.username%>
-      <td><a href="/users">Show details</a></td>
-    <% else %>
-      <td><a href="/users/<%=each_user.username%>">Show details</a></td>
-    <% end %>
-
-  </tr>
+    </tr>
   <%end%>
 
 </table>

@@ -3,12 +3,16 @@ class UsersController < ApplicationController
   #index
     def index
       render({:template => "users/index"})
-  
     end 
 
     def profile
       @this_user = User.where(:username => params.fetch("username")).first
-      render({:template => "users/profile"})
+      
+      if current_user_can_view_details?(@this_user)
+        render({:template => "users/profile"})
+      else
+          redirect_to("/users", {:notice => "You are not authorized to do that!" })
+        end
     end 
     
     def liked_photos
@@ -32,4 +36,11 @@ class UsersController < ApplicationController
 
       render({:template => "users/discover"})
     end 
+
+    def current_user_can_view_details?(user)
+      return true if user == current_user
+  
+      # Check if the current user is a follower of the user
+      current_user.followers.include?(user)
+    end
 end
