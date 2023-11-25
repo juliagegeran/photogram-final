@@ -41,7 +41,7 @@
       <td><img src="<%=each_photo.image%>" alt=""></td>
       <td><%=User.where(:id => each_photo.owner_id).first.username%></td>
       <td><%=each_photo.caption%></td>
-      <td><%=time_ago_in_words(each_photo.created_at)%></td>
+      <td><%=time_ago_in_words(Time.now - each_photo.created_at)%></td>
       <td><%=each_photo.likes_count%></td>
       <td><a href="/photos/<%=each_photo.id%>">Show details</a></td>
       
