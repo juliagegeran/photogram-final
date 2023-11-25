@@ -11,13 +11,13 @@
     <th></th>
     <th></th>
   
-  <%User.all.each do |each_user|%>    
+  <%User.order(:username).all.each do |each_user|%>    
     <tr>
       <td><%=each_user.username%></td>
       
-      <%if each_user.private?%>
+      <%if each_user.private == true%>
         <td>Yes</td>
-      <%else%>
+      <%elsif each_user.private == false%>
         <td>No</td>
       <%end%>
     

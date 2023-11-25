@@ -28,7 +28,7 @@
 
    <div class="checkbox">
     <%= f.label :private %><br />
-    <%= f.check_box :private, autofocus: true %>
+    <%= f.check_box :private, {:checked_value => "true", :unchecked_value => "false"}, autofocus: true %>
   </div>
 
   <div class="actions">

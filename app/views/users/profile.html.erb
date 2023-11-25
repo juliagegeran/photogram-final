@@ -14,6 +14,13 @@
         <dd>
           <a href="/delete_follow_request/<%=@this_user.follow_received.where(:status => "accepted", :sender_id => current_user.id).first.id%>">Unfollow</a></dd>
       <% end %>
+    <% if @this_user.id == current_user.id %>
+    <dt><h4>pending follow requests</h4></dt>
+      <%pending_leader_ids= @this_user.follow_sent.where(:status => "pending").pluck(:id)%>
+      <%pending_leader_names = User.where(id: pending_leader_ids).pluck(:username)%>
+      <dd><%pending_leader_names.to_sentence%></dd>
+    
+    <% end %>
     <dt>Following</dt>
       <dd><%=@this_user.follow_sent.where(:status => "accepted").count%></dd>
   </dl>

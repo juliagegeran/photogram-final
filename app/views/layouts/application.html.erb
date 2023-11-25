@@ -10,7 +10,7 @@
       <% if current_user.present? %>
         <li><a href="/users">All users</a></li>
         <li><a href="/photos">All public photos</a></li>
-        <li><a href="/users/<%=current_user.username%>"><%=current_user.username%></a></li>
+        <li><a href="/users/edit"><%=current_user.username%></a></li>
         <li><a href="/users/sign_out">Sign out</a></li>
       <% else %>
         <li><a href="/users">All users</a></li>

@@ -44,4 +44,8 @@ class UsersController < ApplicationController
       return true if @this_user.private == true && current_user.follow_sent.where(:status => "accepted", :recipient_id => @this_user.id).present?
 
     end
+
+    def edit
+      render({:template => "devise/registration/edit"})
+    end
 end

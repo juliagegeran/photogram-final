@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   #Routes for User resource:
   get("/users", {:controller => "users", :action => "index"})
-  
+  post("/users/edit", {:controller => "users", :action => "edit"})
   get("/users/:username", {:controller => "users", :action => "profile"})
   get("/users/:username/liked_photos", {:controller => "users", :action => "liked_photos"})
   get("/users/:username/feed",{:controller => "users", :action => "feed"})

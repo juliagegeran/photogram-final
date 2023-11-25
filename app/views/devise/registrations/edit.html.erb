@@ -12,6 +12,17 @@
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
+  
+  <div class="field">
+    <%= f.label :username %><br />
+    <%= f.text_field :username, autofocus: true %>
+  </div>
+
+  <div class="checkbox">
+    <%= f.label :private %><br />
+    <%= f.check_box :private, autofocus: true %>
+  </div>
+
   <div class="field">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
@@ -31,15 +42,13 @@
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
+
   <div class="actions">
     <%= f.submit "Update" %>
   </div>
 <% end %>
 
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true %>
-  </div>
+
   
 <h3>Cancel my account</h3>
 
