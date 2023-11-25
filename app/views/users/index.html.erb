@@ -52,15 +52,7 @@
         <td></td>
       <% end %>
     
-      <% if leader.nil? && current_user.present? && current_user.username != each_user.username %>
-        <td>
-          <form action="/users">
-          <a href="/users">Show details</a>
-          </form>
-        </td>
-      <% else %>
         <td><a href="/users/<%=each_user.username%>">Show details</a></td>
-      <% end %>
 
     </tr>
   <%end%>
