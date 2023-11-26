@@ -44,7 +44,7 @@
       <td><img src="<%=liked_photo_record.image%>"></td>
       <td><%=User.where(:id => liked_photo_record.owner_id).first.username%></td>
       <td><%=liked_photo_record.caption%></td>
-      <td><%=time_ago_in_words(Time.now - liked_photo_record.created_at)%></td>
+      <td><%=time_ago_in_words(Time.now - liked_photo_record.created_at)%> ago</td>
       <td><%=liked_photo_record.likes_count%></td>
       <td><a href="/photos/<%=liked_photo_record.id%>">Show details</a></td>
   
