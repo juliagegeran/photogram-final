@@ -16,7 +16,7 @@
     <dd><%=User.where(:id => @the_photo.owner_id).first.username%></dd>
   
   <dt>Posted</dt>
-    <dd><%=time_ago_in_words(Time.now - @the_photo.created_at)%> ago</dd>
+    <dd><%=time_ago_in_words(@the_photo.created_at)%> ago</dd>
   
   <dt>Comments count</dt>
     <dd><%=@the_photo.comments.count%></dd>
@@ -80,7 +80,7 @@
   <tr>
     <td><%=User.where(:id => each_comment.author_id).first.username%></td>
     <td><%=each_comment.body%></td>
-    <td><%=time_ago_in_words(Time.now - each_comment.created_at)%> ago</td>
+    <td><%=time_ago_in_words(each_comment.created_at)%> ago</td>
   
   </tr>
   <% end %>
